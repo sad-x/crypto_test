@@ -21,17 +21,15 @@ def insert_record_to_crypto_table(connection, key, vector):
     cur.execute(
         f'INSERT INTO "CryptoTestSchema"."Crypto" ("CryptoKey","InitVector") VALUES (\'{key}\', \'{vector}\')'
     )
-
     connection.commit()
     print("Record inserted successfully")
-
     connection.close()
 
 
 def get_vector_key_pair(connection):
+    """Gets the last inserted key-vector pair"""
     cur = connection.cursor()
     cur.execute('SELECT "InitVector","CryptoKey" FROM "CryptoTestSchema"."Crypto" WHERE id IN (SELECT MAX(id) FROM "CryptoTestSchema"."Crypto")')
-
     data = {}
     rows = cur.fetchall()
     for row in rows:

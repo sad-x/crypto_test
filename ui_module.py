@@ -1,20 +1,9 @@
+"""user interface module"""
 import os
 
 
-def get_length():
-    while True:
-        l = input("Enter the length of the original sequence")
-        try:
-            int(l)
-        except:
-            print("Wrong format!")
-        if int(l) > 0:
-            return int(l)
-        else:
-            print("Length must be positive!")
-
-
 def get_mode():
+    """Gets mode from user"""
     mode = 'unknown'
     while mode == 'unknown':
         user_mode = input("Choose mode (1 - encryption, 2 - decryption)\n")
@@ -28,6 +17,7 @@ def get_mode():
 
 
 def get_output_file_path(mode):
+    """Gets output filepath from user"""
     while 1 == 1:
         ofp = input("Enter the output directory\n")
         if not os.path.isdir(ofp):
@@ -40,6 +30,7 @@ def get_output_file_path(mode):
 
 
 def get_input_file_path():
+    """Gets input filepath from user"""
     is_file_ok = False
     while not is_file_ok:
         file_path = input("Enter the input file path\n")
